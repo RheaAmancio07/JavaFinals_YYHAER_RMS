@@ -1,11 +1,8 @@
 # Restaurant-Management-System
-This is a restaurant management software which I developed for one of the assignment in Programming 1 course in University.
+Restaurant management software built using Swing UI an Netbeans IDE
 
 ## Features !
  - Intuitive user interface
- - Desktop application
- - File Based Data storage
- - Easy to modify design
  - Multiple modules
     - Basic Authentication  
     - Item Management 
@@ -13,15 +10,13 @@ This is a restaurant management software which I developed for one of the assign
     - Labour Management
     - Billing Management
 
-## How to edit this project ?
-Best way to open and edit the project is to use Netbeans IDE. It allows very easy way to modify the design (Drag and Drop)
 
 ## Authentication
 There is no standard authentication has been added yet. Currently, it is hardcoded.
 
 ```
-Username : shahin
-Password : shahin
+Username : admin
+Password : admin
 ```
 ## Screenshots
 ![login-panel](https://i.ibb.co/7C5ccJf/1-login-panel.png )
