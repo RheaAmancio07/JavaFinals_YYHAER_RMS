@@ -1,7 +1,7 @@
 # Restaurant-Management-System
 Restaurant management software built using Swing UI an Netbeans IDE
 
-## Features !
+## Features
  - Intuitive user interface
  - Multiple modules
     - Basic Authentication  
