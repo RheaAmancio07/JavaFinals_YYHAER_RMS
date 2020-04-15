@@ -11,7 +11,7 @@ Restaurant management software built using Swing UI and Netbeans IDE
 
 
 ## Authentication
-There is no standard authentication has been added yet. Currently, it is hardcoded.
+No standard authentication has been added yet. Currently, it is hardcoded.
 
 ```
 Username : admin
