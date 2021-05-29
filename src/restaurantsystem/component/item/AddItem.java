@@ -5,24 +5,27 @@
  */
 package restaurantsystem.component.item;
 
+import home.Dashboard;
+import java.awt.HeadlessException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.*;
-import restaurantsystem.model.Item;
-import restaurantsystem.service.ItemService;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Shahin
  */
 public class AddItem extends javax.swing.JFrame {
-    
-    private final ItemService itemService; 
 
     /**
      * Creates new form InsertItem
      */
     public AddItem() {
         initComponents();
-        this.itemService = new ItemService();
     }
 
     /**
@@ -34,90 +37,788 @@ public class AddItem extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel7 = new javax.swing.JPanel();
+        addButton5 = new javax.swing.JButton();
+        viewButton5 = new javax.swing.JButton();
+        deleteButton5 = new javax.swing.JButton();
+        modifyButton5 = new javax.swing.JButton();
+        jLabel35 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
+        jLabel40 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        addButton6 = new javax.swing.JButton();
+        viewButton6 = new javax.swing.JButton();
+        deleteButton6 = new javax.swing.JButton();
+        modifyButton6 = new javax.swing.JButton();
+        jLabel41 = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
+        jPanel9 = new javax.swing.JPanel();
+        addButton7 = new javax.swing.JButton();
+        viewButton7 = new javax.swing.JButton();
+        deleteButton7 = new javax.swing.JButton();
+        modifyButton7 = new javax.swing.JButton();
+        jLabel47 = new javax.swing.JLabel();
+        jLabel48 = new javax.swing.JLabel();
+        jLabel49 = new javax.swing.JLabel();
+        jLabel50 = new javax.swing.JLabel();
+        jLabel51 = new javax.swing.JLabel();
+        jLabel52 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        itemPriceField = new javax.swing.JTextField();
         itemNameField = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        itemPriceField = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
         itemQuantityField = new javax.swing.JTextField();
         addButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
+        jPanel10 = new javax.swing.JPanel();
+        addButton8 = new javax.swing.JButton();
+        viewButton8 = new javax.swing.JButton();
+        deleteButton8 = new javax.swing.JButton();
+        modifyButton8 = new javax.swing.JButton();
+        jLabel53 = new javax.swing.JLabel();
+        jLabel54 = new javax.swing.JLabel();
+        jLabel55 = new javax.swing.JLabel();
+        jLabel56 = new javax.swing.JLabel();
+        jLabel57 = new javax.swing.JLabel();
+        jLabel58 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        viewItems = new javax.swing.JTable();
+
+        jPanel7.setBackground(new java.awt.Color(0, 0, 255));
+        jPanel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        addButton5.setBackground(new java.awt.Color(0, 204, 51));
+        addButton5.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        addButton5.setForeground(new java.awt.Color(0, 0, 0));
+        addButton5.setText("Add Item");
+        addButton5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 204, 51), new java.awt.Color(0, 204, 51), null));
+        addButton5.setBorderPainted(false);
+        addButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButton5ActionPerformed(evt);
+            }
+        });
+
+        viewButton5.setBackground(new java.awt.Color(0, 255, 255));
+        viewButton5.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        viewButton5.setForeground(new java.awt.Color(0, 0, 0));
+        viewButton5.setText("View Item");
+        viewButton5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), new java.awt.Color(51, 255, 255), null));
+        viewButton5.setBorderPainted(false);
+        viewButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewButton5ActionPerformed(evt);
+            }
+        });
+
+        deleteButton5.setBackground(new java.awt.Color(255, 51, 51));
+        deleteButton5.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        deleteButton5.setForeground(new java.awt.Color(0, 0, 0));
+        deleteButton5.setText("Delete Item");
+        deleteButton5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 51, 51), new java.awt.Color(255, 51, 51), null));
+        deleteButton5.setBorderPainted(false);
+        deleteButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButton5ActionPerformed(evt);
+            }
+        });
+
+        modifyButton5.setBackground(new java.awt.Color(255, 102, 0));
+        modifyButton5.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        modifyButton5.setForeground(new java.awt.Color(0, 0, 0));
+        modifyButton5.setText("Modify Item");
+        modifyButton5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 102, 0), new java.awt.Color(255, 102, 0), null));
+        modifyButton5.setBorderPainted(false);
+        modifyButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifyButton5ActionPerformed(evt);
+            }
+        });
+
+        jLabel35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rsz_2plus_sign.jpg"))); // NOI18N
+
+        jLabel36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rsz_1eye-icon-simple-vector-illustration-260nw-1661996056.jpg"))); // NOI18N
+
+        jLabel37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rsz_220-2200770_font-trash-fa-trash-icon-png-transparent-png.png"))); // NOI18N
+
+        jLabel38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rsz_fb7a96b2325e350541a18ace9422c752.png"))); // NOI18N
+
+        jLabel39.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel39.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel39.setText("MANAGEMENT");
+
+        jLabel40.setFont(new java.awt.Font("Comic Sans MS", 1, 36)); // NOI18N
+        jLabel40.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel40.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel40.setText("ITEM");
+
+        jPanel8.setBackground(new java.awt.Color(0, 0, 255));
+        jPanel8.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        addButton6.setBackground(new java.awt.Color(0, 204, 51));
+        addButton6.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        addButton6.setForeground(new java.awt.Color(0, 0, 0));
+        addButton6.setText("Add Item");
+        addButton6.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 204, 51), new java.awt.Color(0, 204, 51), null));
+        addButton6.setBorderPainted(false);
+        addButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButton6ActionPerformed(evt);
+            }
+        });
+
+        viewButton6.setBackground(new java.awt.Color(0, 255, 255));
+        viewButton6.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        viewButton6.setForeground(new java.awt.Color(0, 0, 0));
+        viewButton6.setText("View Item");
+        viewButton6.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), new java.awt.Color(51, 255, 255), null));
+        viewButton6.setBorderPainted(false);
+        viewButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewButton6ActionPerformed(evt);
+            }
+        });
+
+        deleteButton6.setBackground(new java.awt.Color(255, 51, 51));
+        deleteButton6.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        deleteButton6.setForeground(new java.awt.Color(0, 0, 0));
+        deleteButton6.setText("Delete Item");
+        deleteButton6.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 51, 51), new java.awt.Color(255, 51, 51), null));
+        deleteButton6.setBorderPainted(false);
+        deleteButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButton6ActionPerformed(evt);
+            }
+        });
+
+        modifyButton6.setBackground(new java.awt.Color(255, 102, 0));
+        modifyButton6.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        modifyButton6.setForeground(new java.awt.Color(0, 0, 0));
+        modifyButton6.setText("Modify Item");
+        modifyButton6.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 102, 0), new java.awt.Color(255, 102, 0), null));
+        modifyButton6.setBorderPainted(false);
+        modifyButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifyButton6ActionPerformed(evt);
+            }
+        });
+
+        jLabel41.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rsz_2plus_sign.jpg"))); // NOI18N
+
+        jLabel42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rsz_1eye-icon-simple-vector-illustration-260nw-1661996056.jpg"))); // NOI18N
+
+        jLabel43.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rsz_220-2200770_font-trash-fa-trash-icon-png-transparent-png.png"))); // NOI18N
+
+        jLabel44.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rsz_fb7a96b2325e350541a18ace9422c752.png"))); // NOI18N
+
+        jLabel45.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel45.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel45.setText("MANAGEMENT");
+
+        jLabel46.setFont(new java.awt.Font("Comic Sans MS", 1, 36)); // NOI18N
+        jLabel46.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel46.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel46.setText("ITEM");
+
+        jPanel9.setBackground(new java.awt.Color(0, 0, 255));
+        jPanel9.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        addButton7.setBackground(new java.awt.Color(0, 204, 51));
+        addButton7.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        addButton7.setForeground(new java.awt.Color(0, 0, 0));
+        addButton7.setText("Add Item");
+        addButton7.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 204, 51), new java.awt.Color(0, 204, 51), null));
+        addButton7.setBorderPainted(false);
+        addButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButton7ActionPerformed(evt);
+            }
+        });
+
+        viewButton7.setBackground(new java.awt.Color(0, 255, 255));
+        viewButton7.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        viewButton7.setForeground(new java.awt.Color(0, 0, 0));
+        viewButton7.setText("View Item");
+        viewButton7.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), new java.awt.Color(51, 255, 255), null));
+        viewButton7.setBorderPainted(false);
+        viewButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewButton7ActionPerformed(evt);
+            }
+        });
+
+        deleteButton7.setBackground(new java.awt.Color(255, 51, 51));
+        deleteButton7.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        deleteButton7.setForeground(new java.awt.Color(0, 0, 0));
+        deleteButton7.setText("Delete Item");
+        deleteButton7.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 51, 51), new java.awt.Color(255, 51, 51), null));
+        deleteButton7.setBorderPainted(false);
+        deleteButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButton7ActionPerformed(evt);
+            }
+        });
+
+        modifyButton7.setBackground(new java.awt.Color(255, 102, 0));
+        modifyButton7.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        modifyButton7.setForeground(new java.awt.Color(0, 0, 0));
+        modifyButton7.setText("Modify Item");
+        modifyButton7.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 102, 0), new java.awt.Color(255, 102, 0), null));
+        modifyButton7.setBorderPainted(false);
+        modifyButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifyButton7ActionPerformed(evt);
+            }
+        });
+
+        jLabel47.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rsz_2plus_sign.jpg"))); // NOI18N
+
+        jLabel48.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rsz_1eye-icon-simple-vector-illustration-260nw-1661996056.jpg"))); // NOI18N
+
+        jLabel49.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rsz_220-2200770_font-trash-fa-trash-icon-png-transparent-png.png"))); // NOI18N
+
+        jLabel50.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rsz_fb7a96b2325e350541a18ace9422c752.png"))); // NOI18N
+
+        jLabel51.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel51.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel51.setText("MANAGEMENT");
+
+        jLabel52.setFont(new java.awt.Font("Comic Sans MS", 1, 36)); // NOI18N
+        jLabel52.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel52.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel52.setText("ITEM");
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(jLabel51)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addComponent(jLabel48)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(viewButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addComponent(jLabel49)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(deleteButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addComponent(jLabel50)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(modifyButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 13, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel52, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel52)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel51)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(addButton7)))
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel48))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(viewButton7)))
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel49))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(deleteButton7)))
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel50))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(modifyButton7)))
+                .addGap(37, 37, 37))
+        );
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(jLabel45)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addComponent(jLabel42)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(viewButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addComponent(jLabel43)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(deleteButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addComponent(jLabel44)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(modifyButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 13, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel8Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel46)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel45)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(addButton6)))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel42))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(viewButton6)))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel43))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(deleteButton6)))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel44))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(modifyButton6)))
+                .addGap(37, 37, 37))
+            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel8Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(jLabel39)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(jLabel36)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(viewButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(jLabel37)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(deleteButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(jLabel38)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(modifyButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 13, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel7Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel40)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel39)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(addButton5)))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel36))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(viewButton5)))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel37))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(deleteButton5)))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel38))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(modifyButton5)))
+                .addGap(37, 37, 37))
+            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel7Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 153, 204));
 
-        jLabel1.setText("Item Name");
+        jPanel1.setBackground(new java.awt.Color(0, 255, 255));
 
-        jLabel2.setText("Item Price");
+        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Item Name:");
 
-        jLabel3.setText("Item Quantity");
+        itemNameField.setBackground(new java.awt.Color(255, 255, 255));
+        itemNameField.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        itemNameField.setForeground(new java.awt.Color(0, 0, 0));
+        itemNameField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
-        addButton.setBackground(new java.awt.Color(0, 255, 153));
-        addButton.setText("Add");
+        jLabel2.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Item Price:");
+
+        itemPriceField.setBackground(new java.awt.Color(255, 255, 255));
+        itemPriceField.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        itemPriceField.setForeground(new java.awt.Color(0, 0, 0));
+        itemPriceField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+
+        jLabel3.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Item Quantity:");
+
+        itemQuantityField.setBackground(new java.awt.Color(255, 255, 255));
+        itemQuantityField.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        itemQuantityField.setForeground(new java.awt.Color(0, 0, 0));
+        itemQuantityField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        itemQuantityField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemQuantityFieldActionPerformed(evt);
+            }
+        });
+
+        addButton.setBackground(new java.awt.Color(0, 0, 255));
+        addButton.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        addButton.setForeground(new java.awt.Color(255, 255, 255));
+        addButton.setText("ADD");
+        addButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 255, 51), new java.awt.Color(0, 204, 51), null));
+        addButton.setBorderPainted(false);
         addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addButtonActionPerformed(evt);
             }
         });
 
-        backButton.setText("Back");
+        backButton.setBackground(new java.awt.Color(0, 0, 255));
+        backButton.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
+        backButton.setForeground(new java.awt.Color(255, 255, 255));
+        backButton.setText("X");
+        backButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 0, 255), new java.awt.Color(0, 0, 255), null));
+        backButton.setBorderPainted(false);
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backButtonActionPerformed(evt);
             }
         });
 
+        jPanel10.setBackground(new java.awt.Color(0, 0, 255));
+        jPanel10.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        addButton8.setBackground(new java.awt.Color(255, 255, 255));
+        addButton8.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        addButton8.setForeground(new java.awt.Color(0, 0, 0));
+        addButton8.setText("Add Item");
+        addButton8.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 204, 51), new java.awt.Color(0, 204, 51), null));
+        addButton8.setBorderPainted(false);
+        addButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButton8ActionPerformed(evt);
+            }
+        });
+
+        viewButton8.setBackground(new java.awt.Color(0, 255, 255));
+        viewButton8.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        viewButton8.setForeground(new java.awt.Color(0, 0, 0));
+        viewButton8.setText("View Item");
+        viewButton8.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), new java.awt.Color(51, 255, 255), null));
+        viewButton8.setBorderPainted(false);
+        viewButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewButton8ActionPerformed(evt);
+            }
+        });
+
+        deleteButton8.setBackground(new java.awt.Color(0, 255, 255));
+        deleteButton8.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        deleteButton8.setForeground(new java.awt.Color(0, 0, 0));
+        deleteButton8.setText("Delete Item");
+        deleteButton8.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 51, 51), new java.awt.Color(255, 51, 51), null));
+        deleteButton8.setBorderPainted(false);
+        deleteButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButton8ActionPerformed(evt);
+            }
+        });
+
+        modifyButton8.setBackground(new java.awt.Color(0, 255, 255));
+        modifyButton8.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        modifyButton8.setForeground(new java.awt.Color(0, 0, 0));
+        modifyButton8.setText("Update Item");
+        modifyButton8.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 102, 0), new java.awt.Color(255, 102, 0), null));
+        modifyButton8.setBorderPainted(false);
+        modifyButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifyButton8ActionPerformed(evt);
+            }
+        });
+
+        jLabel53.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rsz_2plus_sign.jpg"))); // NOI18N
+
+        jLabel54.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rsz_1eye-icon-simple-vector-illustration-260nw-1661996056.jpg"))); // NOI18N
+
+        jLabel55.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rsz_220-2200770_font-trash-fa-trash-icon-png-transparent-png.png"))); // NOI18N
+
+        jLabel56.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rsz_fb7a96b2325e350541a18ace9422c752.png"))); // NOI18N
+
+        jLabel57.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel57.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel57.setText("MANAGEMENT");
+
+        jLabel58.setFont(new java.awt.Font("Comic Sans MS", 1, 36)); // NOI18N
+        jLabel58.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel58.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel58.setText("MENU");
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(jLabel57)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addComponent(jLabel53, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addComponent(jLabel54)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(viewButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addComponent(jLabel55)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(deleteButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addComponent(jLabel56)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(modifyButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 13, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel58, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel58)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel57)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel53, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(addButton8)))
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel54))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(viewButton8)))
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel55))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(deleteButton8)))
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel56))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(modifyButton8)))
+                .addGap(37, 37, 37))
+        );
+
+        jLabel4.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("ADD ITEM IN THE MENU");
+
+        viewItems.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Item ID#", "Name", "Price", "Quantity"
+            }
+        ));
+        jScrollPane2.setViewportView(viewItems);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(89, 89, 89))
+                            .addComponent(backButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(itemNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(itemPriceField, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(43, 43, 43)
+                                        .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(itemQuantityField, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addContainerGap())))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(itemNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(itemPriceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(itemQuantityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(72, 72, 72))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(backButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(addButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(56, 56, 56)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(itemQuantityField)
-                            .addComponent(itemPriceField)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(itemNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(68, 68, 68))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(itemNameField)
-                        .addGap(18, 18, 18)
-                        .addComponent(itemPriceField)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(itemQuantityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backButton)
-                    .addComponent(addButton))
-                .addGap(34, 34, 34))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 457, Short.MAX_VALUE)
         );
 
         pack();
@@ -125,34 +826,55 @@ public class AddItem extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-       
+
         String name = itemNameField.getText();
         String price = itemPriceField.getText();
         String quantity = itemQuantityField.getText();
-        
-        if(name.isEmpty()) {
+
+        if (name.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Item name cannot be empty");
             return;
-        }
-       
-        if(price.isEmpty() || !price.chars().allMatch( Character::isDigit) ||
-                Double.parseDouble(price) <= 0) {
+        } else if (price.isEmpty() || !price.chars().allMatch(Character::isDigit)
+                || Double.parseDouble(price) <= 0) {
             JOptionPane.showMessageDialog(this, "Please enter a valid price for the item");
             return;
-        }
-        
-        if(quantity.isEmpty() || !quantity.chars().allMatch( Character::isDigit) 
-                || Integer.parseInt(quantity) <=0) {
+        } else if (quantity.isEmpty() || !quantity.chars().allMatch(Character::isDigit)
+                || Integer.parseInt(quantity) <= 0) {
             JOptionPane.showMessageDialog(this, "Please enter a valid quantity for the item");
             return;
+        } else {
+            try {
+                Class.forName("com.mysql.jdbc.Driver"); //load the driver
+                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/amancio_rms", "root", ""); //establishes the connection
+
+                // the mysql insert statement
+                String query = " insert into item (name,price, quantity)" + " values (?, ?, ?)";
+
+                // create the mysql insert preparedstatement
+                PreparedStatement preparedStmt = conn.prepareStatement(query);
+
+                preparedStmt.setString(1, name);
+
+                preparedStmt.setString(2, price);
+
+                preparedStmt.setString(3, quantity);
+
+                // execute the preparedstatement
+                preparedStmt.execute();
+
+                conn.close();
+                JOptionPane.showMessageDialog(null, "New item successfully added");
+
+                DefaultTableModel tableModel = (DefaultTableModel) viewItems.getModel();
+                tableModel.setRowCount(0);
+                viewTable();
+            } catch (HeadlessException | ClassNotFoundException | SQLException e) {
+                JOptionPane.showMessageDialog(null, e);
+                System.out.println(e);
+            }
+
         }
-        
-        Item item = new Item(name,
-                    Double.parseDouble(itemPriceField.getText()),
-                    Integer.parseInt(itemQuantityField.getText()));
-        
-        itemService.create(item);
-      
+
         itemNameField.setText("");
         itemPriceField.setText("");
         itemQuantityField.setText("");
@@ -160,23 +882,201 @@ public class AddItem extends javax.swing.JFrame {
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        ItemManagement im = new ItemManagement();
-        im.setVisible(true);
+        Dashboard dashboard = new Dashboard();
+        dashboard.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_backButtonActionPerformed
 
+    private void itemQuantityFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemQuantityFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itemQuantityFieldActionPerformed
+
+    private void addButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButton5ActionPerformed
+        AddItem i = new AddItem();
+        i.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_addButton5ActionPerformed
+
+    private void viewButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButton5ActionPerformed
+        ViewItem vm = new ViewItem();
+        vm.setVisible(true);
+        vm.viewTable();
+        this.dispose();
+    }//GEN-LAST:event_viewButton5ActionPerformed
+
+    private void deleteButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButton5ActionPerformed
+        DeleteItem d = new DeleteItem();
+        d.viewTable();
+        d.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_deleteButton5ActionPerformed
+
+    private void modifyButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyButton5ActionPerformed
+        UpdateItem mi = new UpdateItem();
+        mi.setVisible(true);
+        mi.viewTable();
+        this.dispose();
+    }//GEN-LAST:event_modifyButton5ActionPerformed
+
+    private void addButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButton6ActionPerformed
+        AddItem i = new AddItem();
+        i.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_addButton6ActionPerformed
+
+    private void viewButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButton6ActionPerformed
+        ViewItem vm = new ViewItem();
+        vm.setVisible(true);
+        vm.viewTable();
+        this.dispose();
+    }//GEN-LAST:event_viewButton6ActionPerformed
+
+    private void deleteButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButton6ActionPerformed
+        DeleteItem d = new DeleteItem();
+        d.viewTable();
+        d.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_deleteButton6ActionPerformed
+
+    private void modifyButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyButton6ActionPerformed
+        UpdateItem mi = new UpdateItem();
+        mi.setVisible(true);
+        mi.viewTable();
+        this.dispose();
+    }//GEN-LAST:event_modifyButton6ActionPerformed
+
+    private void addButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButton7ActionPerformed
+        AddItem i = new AddItem();
+        i.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_addButton7ActionPerformed
+
+    private void viewButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButton7ActionPerformed
+        ViewItem vm = new ViewItem();
+        vm.setVisible(true);
+        vm.viewTable();
+        this.dispose();
+    }//GEN-LAST:event_viewButton7ActionPerformed
+
+    private void deleteButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButton7ActionPerformed
+        DeleteItem d = new DeleteItem();
+        d.viewTable();
+        d.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_deleteButton7ActionPerformed
+
+    private void modifyButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyButton7ActionPerformed
+        UpdateItem mi = new UpdateItem();
+        mi.setVisible(true);
+        mi.viewTable();
+        this.dispose();
+    }//GEN-LAST:event_modifyButton7ActionPerformed
+
+    private void addButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButton8ActionPerformed
+        AddItem i = new AddItem();
+        i.viewTable();
+        i.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_addButton8ActionPerformed
+
+    private void viewButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButton8ActionPerformed
+        ViewItem vm = new ViewItem();
+        vm.setVisible(true);
+        vm.viewTable();
+        this.dispose();
+    }//GEN-LAST:event_viewButton8ActionPerformed
+
+    private void deleteButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButton8ActionPerformed
+        DeleteItem d = new DeleteItem();
+        d.viewTable();
+        d.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_deleteButton8ActionPerformed
+
+    private void modifyButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyButton8ActionPerformed
+        UpdateItem mi = new UpdateItem();
+        mi.setVisible(true);
+        mi.viewTable();
+        this.dispose();
+    }//GEN-LAST:event_modifyButton8ActionPerformed
+
+    public void viewTable() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/amancio_rms", "root", "");
+            PreparedStatement pstm = con.prepareStatement("SELECT * FROM item");
+            ResultSet Rs = pstm.executeQuery();
+
+            DefaultTableModel model = (DefaultTableModel) viewItems.getModel();
+
+            while (Rs.next()) {
+                model.addRow(new Object[]{Rs.getInt(1), Rs.getString(2), Rs.getInt(3), Rs.getInt(4)});
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
+    private javax.swing.JButton addButton5;
+    private javax.swing.JButton addButton6;
+    private javax.swing.JButton addButton7;
+    private javax.swing.JButton addButton8;
     private javax.swing.JButton backButton;
+    private javax.swing.JButton deleteButton5;
+    private javax.swing.JButton deleteButton6;
+    private javax.swing.JButton deleteButton7;
+    private javax.swing.JButton deleteButton8;
     private javax.swing.JTextField itemNameField;
     private javax.swing.JTextField itemPriceField;
     private javax.swing.JTextField itemQuantityField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
+    private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
+    private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
+    private javax.swing.JLabel jLabel55;
+    private javax.swing.JLabel jLabel56;
+    private javax.swing.JLabel jLabel57;
+    private javax.swing.JLabel jLabel58;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton modifyButton5;
+    private javax.swing.JButton modifyButton6;
+    private javax.swing.JButton modifyButton7;
+    private javax.swing.JButton modifyButton8;
+    private javax.swing.JButton viewButton5;
+    private javax.swing.JButton viewButton6;
+    private javax.swing.JButton viewButton7;
+    private javax.swing.JButton viewButton8;
+    private javax.swing.JTable viewItems;
     // End of variables declaration//GEN-END:variables
 }

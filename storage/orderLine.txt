@@ -2,3 +2,8 @@
 2,Pizza,2,22.0
 3,Pizza,1,11.0
 4,Pizza,1,11.0
+5,Pizza,1,11.0
+6,Yakult,2,24.0
+7,Yakult,3,36.0
+8,Pizza,1,11.0
+9,Chukie,2,24.0

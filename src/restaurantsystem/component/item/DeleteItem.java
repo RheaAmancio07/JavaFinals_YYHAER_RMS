@@ -5,8 +5,15 @@
  */
 package restaurantsystem.component.item;
 
+import home.Dashboard;
+import java.awt.HeadlessException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import restaurantsystem.service.ItemService;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -14,15 +21,12 @@ import restaurantsystem.service.ItemService;
  */
 public class DeleteItem extends javax.swing.JFrame {
 
-    private final ItemService itemService;
-
     /**
      * Creates new form DeleteItem
      */
     public DeleteItem() {
         initComponents();
-        this.itemService = new ItemService();
-        performFileRelatedTask();
+
     }
 
     /**
@@ -36,168 +40,348 @@ public class DeleteItem extends javax.swing.JFrame {
 
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        text = new javax.swing.JTextArea();
-        dlttext = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        backButton = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        viewItems = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        addButton5 = new javax.swing.JButton();
+        viewButton5 = new javax.swing.JButton();
+        deleteButton5 = new javax.swing.JButton();
+        modifyButton5 = new javax.swing.JButton();
+        jLabel35 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
+        jLabel40 = new javax.swing.JLabel();
         deleteButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        dlttext = new javax.swing.JTextField();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        viewItemsDelete = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane2.setViewportView(jTextArea1);
 
+        viewItems.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Item ID#", "Name", "Price", "Quantity"
+            }
+        ));
+        jScrollPane3.setViewportView(viewItems);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 102, 255));
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 255));
+        jPanel2.setBackground(new java.awt.Color(0, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        text.setEditable(false);
-        text.setBackground(new java.awt.Color(204, 255, 204));
-        text.setColumns(20);
-        text.setRows(5);
-        jScrollPane1.setViewportView(text);
+        jPanel7.setBackground(new java.awt.Color(0, 0, 255));
+        jPanel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel1.setText("Enter item name to delete");
-
-        backButton.setText("Back");
-        backButton.addActionListener(new java.awt.event.ActionListener() {
+        addButton5.setBackground(new java.awt.Color(0, 255, 255));
+        addButton5.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        addButton5.setForeground(new java.awt.Color(0, 0, 0));
+        addButton5.setText("Add Item");
+        addButton5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 204, 51), new java.awt.Color(0, 204, 51), null));
+        addButton5.setBorderPainted(false);
+        addButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButtonActionPerformed(evt);
+                addButton5ActionPerformed(evt);
             }
         });
 
-        deleteButton.setText("Delete");
+        viewButton5.setBackground(new java.awt.Color(0, 255, 255));
+        viewButton5.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        viewButton5.setForeground(new java.awt.Color(0, 0, 0));
+        viewButton5.setText("View Item");
+        viewButton5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), new java.awt.Color(51, 255, 255), null));
+        viewButton5.setBorderPainted(false);
+        viewButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewButton5ActionPerformed(evt);
+            }
+        });
+
+        deleteButton5.setBackground(new java.awt.Color(255, 255, 255));
+        deleteButton5.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        deleteButton5.setForeground(new java.awt.Color(0, 0, 0));
+        deleteButton5.setText("Delete Item");
+        deleteButton5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 51, 51), new java.awt.Color(255, 51, 51), null));
+        deleteButton5.setBorderPainted(false);
+        deleteButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButton5ActionPerformed(evt);
+            }
+        });
+
+        modifyButton5.setBackground(new java.awt.Color(0, 255, 255));
+        modifyButton5.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        modifyButton5.setForeground(new java.awt.Color(0, 0, 0));
+        modifyButton5.setText("Update Item");
+        modifyButton5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 102, 0), new java.awt.Color(255, 102, 0), null));
+        modifyButton5.setBorderPainted(false);
+        modifyButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifyButton5ActionPerformed(evt);
+            }
+        });
+
+        jLabel35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rsz_2plus_sign.jpg"))); // NOI18N
+
+        jLabel36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rsz_1eye-icon-simple-vector-illustration-260nw-1661996056.jpg"))); // NOI18N
+
+        jLabel37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rsz_220-2200770_font-trash-fa-trash-icon-png-transparent-png.png"))); // NOI18N
+
+        jLabel38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rsz_fb7a96b2325e350541a18ace9422c752.png"))); // NOI18N
+
+        jLabel39.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel39.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel39.setText("MANAGEMENT");
+
+        jLabel40.setFont(new java.awt.Font("Comic Sans MS", 1, 36)); // NOI18N
+        jLabel40.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel40.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel40.setText("MENU");
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(jLabel39)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(jLabel36)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(viewButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(jLabel37)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(deleteButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(jLabel38)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(modifyButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 13, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel40)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel39)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(addButton5)))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel36))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(viewButton5)))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel37))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(deleteButton5)))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel38))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(modifyButton5)))
+                .addGap(37, 37, 37))
+        );
+
+        jPanel2.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        deleteButton.setBackground(new java.awt.Color(255, 51, 51));
+        deleteButton.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        deleteButton.setForeground(new java.awt.Color(255, 255, 255));
+        deleteButton.setText("DELETE");
+        deleteButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 51, 51), new java.awt.Color(255, 51, 51), null));
+        deleteButton.setBorderPainted(false);
         deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteButtonActionPerformed(evt);
             }
         });
+        jPanel2.add(deleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 420, 78, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(98, 98, 98)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(backButton)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(171, 171, 171)
-                                .addComponent(dlttext, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(deleteButton))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(93, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dlttext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(deleteButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(backButton)
-                .addGap(18, 18, 18))
-        );
+        backButton.setBackground(new java.awt.Color(0, 0, 255));
+        backButton.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
+        backButton.setForeground(new java.awt.Color(255, 255, 255));
+        backButton.setText("X");
+        backButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        backButton.setBorderPainted(false);
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
+        jPanel2.add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 0, 40, 30));
 
-        jLabel2.setText("Name");
+        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Enter item ID# to delete");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 390, 200, 20));
 
-        jLabel3.setText("Price");
+        dlttext.setBackground(new java.awt.Color(255, 255, 255));
+        dlttext.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        dlttext.setForeground(new java.awt.Color(0, 0, 0));
+        dlttext.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jPanel2.add(dlttext, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 390, 150, 20));
 
-        jLabel4.setText("Quantity");
+        viewItemsDelete.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Item ID#", "Name", "Price", "Quantity"
+            }
+        ));
+        jScrollPane4.setViewportView(viewItemsDelete);
+
+        jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 530, 270));
+
+        jLabel2.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("DELETE ITEM IN THE MENU");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, -1, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(106, 106, 106)
-                .addComponent(jLabel2)
-                .addGap(146, 146, 146)
-                .addComponent(jLabel3)
-                .addGap(79, 79, 79)
-                .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    private void performFileRelatedTask() {
-        StringBuilder fullnames = new StringBuilder();
-
-        itemService.getAll().forEach((item) -> {
-            fullnames.append(item.getName())
-                    .append("\t")
-                    .append(item.getPrice())
-                    .append("\t")
-                    .append(item.getQuantity())
-                    .append("\n");
-        });
-
-        text.setText(fullnames.toString());
-    }
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         String name = dlttext.getText();
 
-        if (name.isEmpty()) {
-            dlttext.setText("");
-            JOptionPane.showMessageDialog(this, "Please enter a valid name to delete");
-            return;
+        if (name.isEmpty() || !name.chars().allMatch(Character::isDigit)
+                || Double.parseDouble(name) <= 0) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid price for the item");
+        } else {
+            int num = Integer.valueOf(name);
+            try {
+                Class.forName("com.mysql.jdbc.Driver"); //load the driver
+                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/amancio_rms", "root", ""); //establishes the connection
+
+                // the mysql insert statement
+                String query = "DELETE FROM item WHERE item_id = ?";
+
+                // create the mysql insert preparedstatement
+                PreparedStatement preparedStmt = conn.prepareStatement(query);
+                preparedStmt.setInt(1, num);
+
+                // execute the preparedstatement
+                preparedStmt.executeUpdate();
+
+                conn.close();
+                JOptionPane.showMessageDialog(null, "Item has been removed");
+                // Reset the deleted text field
+                dlttext.setText("");
+
+                DefaultTableModel tableModel = (DefaultTableModel) viewItemsDelete.getModel();
+                tableModel.setRowCount(0);
+                viewTable();
+            } catch (HeadlessException | ClassNotFoundException | SQLException e) {
+                JOptionPane.showMessageDialog(null, e);
+                System.out.println(e);
+            }
+
         }
-
-        boolean isDeleted = itemService.delete(name);
-
-        if (!isDeleted) {
-            dlttext.setText("");
-            JOptionPane.showMessageDialog(this, "No Item has been found to delete");
-            return;
-        }
-
-        // Show confirmation pop up
-        JOptionPane.showMessageDialog(this, "Item has been removed");
-
-        // Reset the deleted text field
-        dlttext.setText("");
-
-        // Reinitilize the form with updated data
-        performFileRelatedTask();
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        ItemManagement im = new ItemManagement();
-        im.setVisible(true);
+        Dashboard dashboard = new Dashboard();
+        dashboard.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void addButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButton5ActionPerformed
+        AddItem i = new AddItem();
+        i.viewTable();
+        i.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_addButton5ActionPerformed
+
+    private void viewButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButton5ActionPerformed
+        ViewItem vm = new ViewItem();
+        vm.setVisible(true);
+        vm.viewTable();
+        this.dispose();
+    }//GEN-LAST:event_viewButton5ActionPerformed
+
+    private void deleteButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButton5ActionPerformed
+        DeleteItem d = new DeleteItem();
+        d.viewTable();
+        d.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_deleteButton5ActionPerformed
+
+    private void modifyButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyButton5ActionPerformed
+        UpdateItem mi = new UpdateItem();
+        mi.setVisible(true);
+        mi.viewTable();
+        this.dispose();
+    }//GEN-LAST:event_modifyButton5ActionPerformed
+    public void viewTable() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/amancio_rms", "root", "");
+            PreparedStatement pstm = con.prepareStatement("SELECT * FROM item");
+            ResultSet Rs = pstm.executeQuery();
+
+            DefaultTableModel model = (DefaultTableModel) viewItemsDelete.getModel();
+
+            while (Rs.next()) {
+                model.addRow(new Object[]{Rs.getInt(1), Rs.getString(2), Rs.getInt(3), Rs.getInt(4)});
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
 
     /**
      * @param args the command line arguments
@@ -234,17 +418,28 @@ public class DeleteItem extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addButton5;
     private javax.swing.JButton backButton;
     private javax.swing.JButton deleteButton;
+    private javax.swing.JButton deleteButton5;
     private javax.swing.JTextField dlttext;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea text;
+    private javax.swing.JButton modifyButton5;
+    private javax.swing.JButton viewButton5;
+    private javax.swing.JTable viewItems;
+    private javax.swing.JTable viewItemsDelete;
     // End of variables declaration//GEN-END:variables
 }

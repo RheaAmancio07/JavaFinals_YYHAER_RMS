@@ -1,2 +1,5 @@
-Pizza,11.0,5
-KABAB,20.0,1
+Pizza,11.0,3
+Yakult,12.0,7
+Pizza,75.0,9
+Chukie,12.0,8
+coke,15.0,20

@@ -5,9 +5,15 @@
  */
 package restaurantsystem.component.labour;
 
+import home.Dashboard;
+import java.awt.HeadlessException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import restaurantsystem.model.Labour;
-import restaurantsystem.service.LabourService;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,14 +21,12 @@ import restaurantsystem.service.LabourService;
  */
 public class AddLabour extends javax.swing.JFrame {
 
-    private final LabourService labourService;
-
     /**
      * Creates new form InserLabour
      */
     public AddLabour() {
         initComponents();
-        this.labourService = new LabourService();
+
     }
 
     /**
@@ -34,94 +38,321 @@ public class AddLabour extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        addButton = new javax.swing.JButton();
-        backButton = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        labourNameField = new javax.swing.JTextField();
         labourIdField = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        labourNameField = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
         labourSalaryField = new javax.swing.JTextField();
+        backButton = new javax.swing.JButton();
+        addButton = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        addLabour = new javax.swing.JButton();
+        viewLabour = new javax.swing.JButton();
+        deleteLabour = new javax.swing.JButton();
+        updateLabour = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        viewlabour = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 102, 255));
 
-        addButton.setText("Add");
-        addButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addButtonActionPerformed(evt);
-            }
-        });
+        jPanel2.setBackground(new java.awt.Color(0, 255, 255));
 
-        backButton.setText("Back");
-        backButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButtonActionPerformed(evt);
-            }
-        });
+        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 3, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Labour ID:");
 
-        jLabel1.setText("Labour ID");
-
-        jLabel2.setText("Labour Name");
-
-        jLabel3.setText("Labour Salary");
-
+        labourIdField.setBackground(new java.awt.Color(255, 255, 255));
+        labourIdField.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        labourIdField.setForeground(new java.awt.Color(0, 0, 0));
+        labourIdField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         labourIdField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 labourIdFieldActionPerformed(evt);
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Comic Sans MS", 3, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Labour Name:");
+
+        labourNameField.setBackground(new java.awt.Color(255, 255, 255));
+        labourNameField.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        labourNameField.setForeground(new java.awt.Color(0, 0, 0));
+        labourNameField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+
+        jLabel3.setFont(new java.awt.Font("Comic Sans MS", 3, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Labour Salary:");
+
+        labourSalaryField.setBackground(new java.awt.Color(255, 255, 255));
+        labourSalaryField.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        labourSalaryField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+
+        backButton.setBackground(new java.awt.Color(0, 0, 255));
+        backButton.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
+        backButton.setForeground(new java.awt.Color(255, 255, 255));
+        backButton.setText("X");
+        backButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 0, 255), new java.awt.Color(0, 0, 255), null));
+        backButton.setBorderPainted(false);
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
+
+        addButton.setBackground(new java.awt.Color(0, 0, 255));
+        addButton.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        addButton.setForeground(new java.awt.Color(255, 255, 255));
+        addButton.setText("ADD");
+        addButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 255, 102), new java.awt.Color(0, 255, 102), null));
+        addButton.setBorderPainted(false);
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
+
+        jPanel3.setBackground(new java.awt.Color(0, 0, 255));
+        jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel3.setForeground(new java.awt.Color(0, 0, 255));
+
+        addLabour.setBackground(new java.awt.Color(255, 255, 255));
+        addLabour.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        addLabour.setForeground(new java.awt.Color(0, 0, 0));
+        addLabour.setText("Add Labour");
+        addLabour.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 255, 102), new java.awt.Color(0, 255, 102), null));
+        addLabour.setBorderPainted(false);
+        addLabour.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addLabourActionPerformed(evt);
+            }
+        });
+
+        viewLabour.setBackground(new java.awt.Color(0, 255, 255));
+        viewLabour.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        viewLabour.setForeground(new java.awt.Color(0, 0, 0));
+        viewLabour.setText("View Labour");
+        viewLabour.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 153, 255), new java.awt.Color(0, 204, 255), null));
+        viewLabour.setBorderPainted(false);
+        viewLabour.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewLabourActionPerformed(evt);
+            }
+        });
+
+        deleteLabour.setBackground(new java.awt.Color(0, 255, 255));
+        deleteLabour.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        deleteLabour.setForeground(new java.awt.Color(0, 0, 0));
+        deleteLabour.setText("Delete Labour");
+        deleteLabour.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 51, 51), new java.awt.Color(255, 51, 51), null));
+        deleteLabour.setBorderPainted(false);
+        deleteLabour.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteLabourActionPerformed(evt);
+            }
+        });
+
+        updateLabour.setBackground(new java.awt.Color(0, 255, 255));
+        updateLabour.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        updateLabour.setForeground(new java.awt.Color(0, 0, 0));
+        updateLabour.setText("Update Labour");
+        updateLabour.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 102, 0), new java.awt.Color(255, 102, 0), null));
+        updateLabour.setBorderPainted(false);
+        updateLabour.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateLabourActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setForeground(new java.awt.Color(153, 255, 255));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rsz_2plus_sign.jpg"))); // NOI18N
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rsz_1eye-icon-simple-vector-illustration-260nw-1661996056.jpg"))); // NOI18N
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rsz_220-2200770_font-trash-fa-trash-icon-png-transparent-png.png"))); // NOI18N
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rsz_fb7a96b2325e350541a18ace9422c752.png"))); // NOI18N
+
+        jLabel8.setFont(new java.awt.Font("Comic Sans MS", 1, 36)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("LABOUR");
+
+        jLabel9.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("MANAGEMENT");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(deleteLabour, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(updateLabour, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(addLabour, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(viewLabour, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel9)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel4))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(addLabour)))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(viewLabour)))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel6))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(deleteLabour)))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel7))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(updateLabour)))
+                .addContainerGap(48, Short.MAX_VALUE))
+        );
+
+        jLabel10.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setText("NEW LABOURER");
+
+        viewlabour.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "LIST NO.", "LABOUR ID", "NAME", "SALARY"
+            }
+        ));
+        jScrollPane2.setViewportView(viewlabour);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 106, Short.MAX_VALUE)
+                        .addComponent(jLabel10)
+                        .addGap(81, 81, 81)
+                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(labourIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(labourSalaryField)
+                                    .addComponent(labourNameField))
+                                .addGap(48, 48, 48)
+                                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(31, 31, 31))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addContainerGap())))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(backButton)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jLabel10)))
+                .addGap(13, 13, 13)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(labourIdField))
+                .addGap(15, 15, 15)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labourNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(labourSalaryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(backButton)
-                        .addGap(104, 104, 104)
-                        .addComponent(addButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(56, 56, 56)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labourSalaryField)
-                            .addComponent(labourNameField)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labourIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(172, 172, 172))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(labourIdField)
-                        .addGap(18, 18, 18)
-                        .addComponent(labourNameField)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(labourSalaryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addButton)
-                    .addComponent(backButton))
-                .addGap(141, 141, 141))
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 474, Short.MAX_VALUE)
         );
 
         pack();
@@ -137,35 +368,110 @@ public class AddLabour extends javax.swing.JFrame {
         if (id.isEmpty() || name.isEmpty() || salary.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Field(s) cannot be empty");
             return;
-        }
-
-        if (!salary.chars().allMatch(Character::isDigit) || Double.parseDouble(salary) <= 0) {
+        } else if (!salary.chars().allMatch(Character::isDigit) || Double.parseDouble(salary) <= 0) {
             JOptionPane.showMessageDialog(this, "Please enter a valid salary");
             return;
+        } else {
+            try {
+                Class.forName("com.mysql.jdbc.Driver"); //load the driver
+                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/amancio_rms", "root", ""); //establishes the connection
+
+                // the mysql insert statement
+                String query = " insert into labour (labourID,name, salary)" + " values (?, ?, ?)";
+
+                // create the mysql insert preparedstatement
+                PreparedStatement preparedStmt = conn.prepareStatement(query);
+
+                preparedStmt.setString(1, id);
+
+                preparedStmt.setString(2, name);
+
+                preparedStmt.setString(3, salary);
+
+                // execute the preparedstatement
+                preparedStmt.execute();
+
+                conn.close();
+                JOptionPane.showMessageDialog(null, "New Labour successfully added");
+                // Reset input fields
+                labourIdField.setText("");
+                labourNameField.setText("");
+                labourSalaryField.setText("");
+//            new LabourManagement().setVisible(true);
+//            this.setVisible(false);
+                DefaultTableModel tableModel = (DefaultTableModel) viewlabour.getModel();
+                tableModel.setRowCount(0);
+                viewTable();
+            } catch (HeadlessException | ClassNotFoundException | SQLException e) {
+                JOptionPane.showMessageDialog(null, e);
+                System.out.println(e);
+            }
+
         }
-        
-        Labour labour = new Labour(id, name, Double.parseDouble(salary));
 
-        labourService.create(labour);
-
-        JOptionPane.showMessageDialog(this, "Item has been added");
-
-        // Reset input fields
-        labourIdField.setText("");
-        labourNameField.setText("");
-        labourSalaryField.setText("");
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-        LabourManagement lb = new LabourManagement();
-        lb.setVisible(true);
+        Dashboard dashboard = new Dashboard();
+        dashboard.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void labourIdFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_labourIdFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_labourIdFieldActionPerformed
+
+    private void addLabourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addLabourActionPerformed
+        // TODO add your handling code here
+        AddLabour i = new AddLabour();
+        i.viewTable();
+        i.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_addLabourActionPerformed
+
+    private void viewLabourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewLabourActionPerformed
+        // TODO add your handling code here:
+        ViewLabour vl = new ViewLabour();
+        vl.setVisible(true);
+        vl.viewTable();
+        this.dispose();
+    }//GEN-LAST:event_viewLabourActionPerformed
+
+    private void deleteLabourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteLabourActionPerformed
+        // TODO add your handling code here:
+        DeleteLabour dl = new DeleteLabour();
+        dl.viewTable();
+        dl.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_deleteLabourActionPerformed
+
+    private void updateLabourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateLabourActionPerformed
+        // TODO add your handling code here:
+        UpdateLabour ml = new UpdateLabour();
+        ml.viewTable();
+        ml.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_updateLabourActionPerformed
+
+    public void viewTable() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/amancio_rms", "root", "");
+            PreparedStatement pstm = con.prepareStatement("SELECT * FROM labour");
+            ResultSet Rs = pstm.executeQuery();
+
+            DefaultTableModel model = (DefaultTableModel) viewlabour.getModel();
+
+            while (Rs.next()) {
+                model.addRow(new Object[]{Rs.getInt(1), Rs.getInt(2), Rs.getString(3), Rs.getInt(4)});
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
 
     /**
      * @param args the command line arguments
@@ -203,12 +509,27 @@ public class AddLabour extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
+    private javax.swing.JButton addLabour;
     private javax.swing.JButton backButton;
+    private javax.swing.JButton deleteLabour;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField labourIdField;
     private javax.swing.JTextField labourNameField;
     private javax.swing.JTextField labourSalaryField;
+    private javax.swing.JButton updateLabour;
+    private javax.swing.JButton viewLabour;
+    private javax.swing.JTable viewlabour;
     // End of variables declaration//GEN-END:variables
 }
