@@ -13,3 +13,6 @@ Username : admin
 Password : admin
 ```
 
+```
+database: amancio_rms(1)
+```
