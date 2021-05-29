@@ -16,3 +16,6 @@ Password : admin
 ```
 database: amancio_rms(1)
 ```
+```
+add all jar files
+```
